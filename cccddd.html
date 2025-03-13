@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destination Selector</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+    <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">
+      Excelsia Health Travels Destination Selector
+    </h2>
+
+    <p class="text-gray-600 mb-8 text-center">
+      Find the perfect destination for your medical or birth tourism journey in just a few steps.
+    </p>
+
+    <div id="app" class="space-y-6">
+      <!-- Step content will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+    // State management
+    let step = 1;
+    let selections = {
+      purpose: '',
+      budget: '',
+      travelDistance: '',
+      treatmentType: '',
+      citizenshipBenefits: '',
+      destinationFeatures: []
+    };
+    let showResults = false;
+
+    // DOM elements
+    const app = document.getElementById('app');
+
+    // Helper functions
+    const handleSelection = (field, value) => {
+      selections[field] = value;
+      renderStep();
+    };
+
+    const handleMultiSelect = (value) => {
+      selections.destinationFeatures = selections.destinationFeatures.includes(value)
+        ? selections.destinationFeatures.filter(item => item !== value)
+        : [...selections.destinationFeatures, value];
+      renderStep();
+    };
+
+    const nextStep = () => {
+      if (step < 7) step++;
+      if (step === 7) showResults = true;
+      renderStep();
+    };
+
+    const prevStep = () => {
+      if (step > 1) step--;
+      if (showResults) showResults = false;
+      renderStep();
+    };
+
+    const getRecommendedDestinations = () => {
+      let recommendations = [];
+
+      if (selections.purpose === 'Birth Tourism') {
+        if (selections.citizenshipBenefits === 'U.S. Citizenship') {
+          recommendations.push({
+            country: 'United States',
+            description: 'Ideal for birth tourism (U.S. citizenship) and advanced medical treatments.'
+          });
+        }
+        if (selections.citizenshipBenefits === 'Canadian Citizenship') {
+          recommendations.push({
+            country: 'Canada',
+            description: 'Perfect for birth tourism (Canadian citizenship) and high-quality healthcare.'
+          });
+        }
+      } else if (selections.purpose === 'Medical Treatment') {
+        if (selections.budget === 'Under $10,000') {
+          recommendations.push({
+            country: 'India',
+            description: 'Affordable medical treatments, including cardiac care, organ transplants, and fertility treatments.'
+          });
+          recommendations.push({
+            country: 'Thailand',
+            description: 'Popular for cosmetic surgery, dental care, and wellness programs.'
+          });
+        } else if (selections.budget === 'Over $50,000') {
+          recommendations.push({
+            country: 'Germany',
+            description: 'Advanced medical treatments, including oncology and neurology.'
+          });
+          recommendations.push({
+            country: 'United States',
+            description: 'World-class medical facilities and cutting-edge treatments.'
+          });
+        }
+      }
+
+      return recommendations;
+    };
+
+    const renderStep = () => {
+      app.innerHTML = '';
+
+      if (showResults) {
+        renderResults();
+        return;
+      }
+
+      // Progress bar
+      const progressBar = document.createElement('div');
+      progressBar.className = 'w-full bg-gray-200 rounded-full h-2 mb-8';
+      const progressFill = document.createElement('div');
+      progressFill.className = 'bg-blue-600 h-2 rounded-full transition-all duration-500';
+      progressFill.style.width = `${(step / 6) * 100}%`;
+      progressBar.appendChild(progressFill);
+
+      // Step counter
+      const stepCounter = document.createElement('div');
+      stepCounter.className = 'flex justify-between mb-4';
+      stepCounter.innerHTML = `
+        <div class="text-sm text-gray-500">Step ${step} of 6</div>
+        <div class="text-sm text-gray-500">${Math.round((step / 6) * 100)}% Complete</div>
+      `;
+
+      app.appendChild(stepCounter);
+      app.appendChild(progressBar);
+
+      // Step content
+      if (step === 1) {
+        renderPurposeStep();
+      } else if (step === 2) {
+        renderBudgetStep();
+      } else if (step === 3) {
+        renderTravelDistanceStep();
+      } else if (step === 4 && selections.purpose === 'Medical Treatment') {
+        renderTreatmentTypeStep();
+      } else if (step === 5 && selections.purpose === 'Birth Tourism') {
+        renderCitizenshipBenefitsStep();
+      } else if (step === 6) {
+        renderDestinationFeaturesStep();
+      }
+
+      // Navigation buttons
+      const navButtons = document.createElement('div');
+      navButtons.className = 'flex justify-between mt-8';
+      if (step > 1) {
+        const prevButton = document.createElement('button');
+        prevButton.className = 'px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50';
+        prevButton.textContent = 'Previous';
+        prevButton.addEventListener('click', prevStep);
+        navButtons.appendChild(prevButton);
+      }
+      const nextButton = document.createElement('button');
+      nextButton.className = 'px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ml-auto';
+      nextButton.textContent = step === 6 ? 'See Results' : 'Next';
+      nextButton.addEventListener('click', nextStep);
+      navButtons.appendChild(nextButton);
+
+      app.appendChild(navButtons);
+    };
+
+    const renderPurposeStep = () => {
+      const stepContent = document.createElement('div');
+      stepContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Purpose of Travel</h3>
+        <div class="space-y-3">
+          ${['Birth Tourism', 'Medical Treatment', 'Cosmetic Surgery', 'Dental Care', 'Wellness and Recovery']
+            .map(purpose => `
+              <div
+                class="p-4 border rounded-lg cursor-pointer transition-colors
+                  ${selections.purpose === purpose ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'}"
+                onclick="handleSelection('purpose', '${purpose}')"
+              >
+                ${purpose}
+              </div>
+            `).join('')}
+        </div>
+      `;
+      app.appendChild(stepContent);
+    };
+
+    const renderBudgetStep = () => {
+      const stepContent = document.createElement('div');
+      stepContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Budget Range</h3>
+        <div class="space-y-3">
+          ${['Under $10,000', '$10,000 - $30,000', '$30,000 - $50,000', 'Over $50,000']
+            .map(budget => `
+              <div
+                class="p-4 border rounded-lg cursor-pointer transition-colors
+                  ${selections.budget === budget ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'}"
+                onclick="handleSelection('budget', '${budget}')"
+              >
+                ${budget}
+              </div>
+            `).join('')}
+        </div>
+      `;
+      app.appendChild(stepContent);
+    };
+
+    const renderTravelDistanceStep = () => {
+      const stepContent = document.createElement('div');
+      stepContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Travel Distance</h3>
+        <div class="space-y-3">
+          ${[
+            'Short-haul (Under 6 hours by flight)',
+            'Medium-haul (6-12 hours by flight)',
+            'Long-haul (Over 12 hours by flight)'
+          ].map(distance => `
+            <div
+              class="p-4 border rounded-lg cursor-pointer transition-colors
+                ${selections.travelDistance === distance ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'}"
+              onclick="handleSelection('travelDistance', '${distance}')"
+            >
+              ${distance}
+            </div>
+          `).join('')}
+        </div>
+      `;
+      app.appendChild(stepContent);
+    };
+
+    const renderTreatmentTypeStep = () => {
+      const stepContent = document.createElement('div');
+      stepContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Treatment Type</h3>
+        <div class="space-y-3">
+          ${[
+            'Cardiac Care',
+            'Orthopedic Surgery',
+            'Fertility Treatments',
+            'Oncology',
+            'Neurology',
+            'Bariatric Surgery',
+            'Organ Transplants',
+            'Other'
+          ].map(treatment => `
+            <div
+              class="p-4 border rounded-lg cursor-pointer transition-colors
+                ${selections.treatmentType === treatment ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'}"
+              onclick="handleSelection('treatmentType', '${treatment}')"
+            >
+              ${treatment}
+            </div>
+          `).join('')}
+        </div>
+      `;
+      app.appendChild(stepContent);
+    };
+
+    const renderCitizenshipBenefitsStep = () => {
+      const stepContent = document.createElement('div');
+      stepContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Citizenship Benefits</h3>
+        <div class="space-y-3">
+          ${[
+            'U.S. Citizenship',
+            'Canadian Citizenship',
+            'Brazilian Citizenship',
+            'Mexican Citizenship',
+            'Other'
+          ].map(citizenship => `
+            <div
+              class="p-4 border rounded-lg cursor-pointer transition-colors
+                ${selections.citizenshipBenefits === citizenship ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'}"
+              onclick="handleSelection('citizenshipBenefits', '${citizenship}')"
+            >
+              ${citizenship}
+            </div>
+          `).join('')}
+        </div>
+      `;
+      app.appendChild(stepContent);
+    };
+
+    const renderDestinationFeaturesStep = () => {
+      const stepContent = document.createElement('div');
+      stepContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Preferred Destination Features</h3>
+        <div class="space-y-3">
+          ${[
+            'Affordable healthcare and treatment costs',
+            'World-class hospitals and specialists',
+            'Shorter wait times for treatment',
+            'High-quality maternity care',
+            'Cultural and leisure opportunities',
+            'Proximity to home',
+            'Language support'
+          ].map(feature => `
+            <div
+              class="p-4 border rounded-lg cursor-pointer transition-colors
+                ${selections.destinationFeatures.includes(feature) ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'}"
+              onclick="handleMultiSelect('${feature}')"
+            >
+              ${feature}
+            </div>
+          `).join('')}
+        </div>
+      `;
+      app.appendChild(stepContent);
+    };
+
+    const renderResults = () => {
+      const recommendations = getRecommendedDestinations();
+      const resultsContent = document.createElement('div');
+      resultsContent.className = 'space-y-6';
+      resultsContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Recommended Destinations</h3>
+        <div class="space-y-4">
+          ${recommendations.map(destination => `
+            <div class="p-6 border rounded-lg">
+              <h4 class="text-lg font-semibold text-blue-600">${destination.country}</h4>
+              <p class="text-gray-600 mt-2">${destination.description}</p>
+            </div>
+          `).join('')}
+        </div>
+        <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+          <h4 class="font-semibold text-lg mb-4">Ready to start your journey?</h4>
+          <p class="text-gray-600">Contact Excelsia Health Travels today for a free consultation and personalized quote!</p>
+          <div class="mt-4">
+            <p>Email: travels@excelsiahealth.net</p>
+          </div>
+        </div>
+        <button
+          onclick="prevStep()"
+          class="px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50"
+        >
+          Back to Questions
+        </button>
+      `;
+      app.appendChild(resultsContent);
+    };
+
+    // Initial render
+    renderStep();
+  </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Tourism Cost Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+    <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">
+      Medical Tourism Cost Calculator
+    </h2>
+
+    <p class="text-gray-600 mb-8 text-center">
+      Calculate the estimated cost of your medical or birth tourism journey. This calculator provides an approximate cost based on your selected destination, treatment type, length of stay, and accommodation preferences.
+    </p>
+
+    <div class="space-y-6">
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">
+          Select Destination Country
+        </label>
+        <select id="destination" class="w-full p-2 border rounded">
+          <option value="">Select a destination</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">
+          Select Service Type
+        </label>
+        <select id="serviceType" class="w-full p-2 border rounded">
+          <option value="">Select service type</option>
+          <option value="Medical Treatment">Medical Treatment</option>
+          <option value="Birth Tourism">Birth Tourism</option>
+        </select>
+      </div>
+
+      <div id="treatmentCategoryContainer" class="hidden">
+        <label class="block text-gray-700 font-semibold mb-2">
+          Select Treatment Category
+        </label>
+        <select id="treatmentCategory" class="w-full p-2 border rounded">
+          <option value="">Select treatment</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">
+          Length of Stay (days)
+        </label>
+        <input
+          type="number"
+          id="lengthOfStay"
+          min="1"
+          class="w-full p-2 border rounded"
+          placeholder="Enter number of days"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">
+          Accommodation Type
+        </label>
+        <select id="accommodationType" class="w-full p-2 border rounded">
+          <option value="">Select accommodation</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-2">
+          Additional Services
+        </label>
+        <div id="additionalServices" class="grid grid-cols-2 gap-4">
+        </div>
+      </div>
+
+      <button
+        id="calculateButton"
+        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        Calculate Costs
+      </button>
+
+      <div id="results" class="mt-8 p-6 bg-gray-50 rounded-lg hidden">
+        <h3 class="text-xl font-bold mb-4">Cost Breakdown</h3>
+
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-semibold">Medical Costs</h4>
+            <p id="medicalCosts" class="text-gray-600"></p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold">Travel Costs</h4>
+            <p id="travelCosts" class="text-gray-600"></p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold">Additional Services</h4>
+            <p id="additionalCosts" class="text-gray-600"></p>
+          </div>
+
+          <div class="pt-4 border-t">
+            <h4 class="font-semibold">Total Estimated Cost</h4>
+            <p id="totalCostUSD" class="text-xl text-blue-600"></p>
+            <p id="totalCostNGN" class="text-gray-600"></p>
+          </div>
+        </div>
+
+        <div class="mt-6 text-sm text-gray-500">
+          <p>This calculator provides approximate costs based on average prices. Actual costs may vary depending on specific medical conditions, hospital choice, season of travel, and current market rates.</p>
+          <div class="mt-4">
+            <p class="font-semibold">Ready to proceed? Contact our medical tourism experts:</p>
+            <p>Email: travels@excelsiahealth.net</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample base costs (in USD)
+    const baseCosts = {
+      destinations: {
+        'United States': 1.5,
+        'Canada': 1.3,
+        'India': 0.4,
+        'Turkey': 0.6,
+        'Thailand': 0.5,
+        'UAE (Dubai)': 1.2,
+        'Mexico': 0.7,
+        'Brazil': 0.8,
+        'Singapore': 1.1,
+        'South Korea': 1.0,
+        'Germany': 1.4,
+        'Argentina': 0.7
+      },
+      treatments: {
+        'Cardiac Surgery': 50000,
+        'Orthopedic Surgery': 35000,
+        'Cancer Treatment': 45000,
+        'Fertility Treatment': 20000,
+        'Cosmetic Surgery': 15000,
+        'Dental Treatment': 5000,
+        'Weight Loss Surgery': 25000,
+        'Spine Surgery': 40000,
+        'Eye Surgery': 8000,
+        'General Surgery': 30000,
+        'Birth Tourism': 35000
+      },
+      accommodation: {
+        'Standard (3-star)': 100,
+        'Premium (4-star)': 200,
+        'Luxury (5-star)': 350
+      },
+      additionalServices: {
+        'Airport Transfers': 100,
+        'Local Transportation': 50,
+        'Language Interpreter': 300,
+        'Medical Visa Assistance': 200,
+        'Travel Insurance': 500,
+        'Post-treatment Care': 1000
+      }
+    };
+
+    // Populate dropdowns
+    const destinationSelect = document.getElementById('destination');
+    const treatmentCategorySelect = document.getElementById('treatmentCategory');
+    const accommodationTypeSelect = document.getElementById('accommodationType');
+    const additionalServicesDiv = document.getElementById('additionalServices');
+
+    Object.keys(baseCosts.destinations).forEach(destination => {
+      const option = document.createElement('option');
+      option.value = destination;
+      option.textContent = destination;
+      destinationSelect.appendChild(option);
+    });
+
+    Object.keys(baseCosts.treatments).forEach(treatment => {
+      if (treatment !== 'Birth Tourism') {
+        const option = document.createElement('option');
+        option.value = treatment;
+        option.textContent = treatment;
+        treatmentCategorySelect.appendChild(option);
+      }
+    });
+
+    Object.keys(baseCosts.accommodation).forEach(type => {
+      const option = document.createElement('option');
+      option.value = type;
+      option.textContent = type;
+      accommodationTypeSelect.appendChild(option);
+    });
+
+    Object.keys(baseCosts.additionalServices).forEach(service => {
+      const div = document.createElement('div');
+      div.className = 'flex items-center';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.value = service;
+      input.className = 'mr-2';
+      div.appendChild(input);
+      const span = document.createElement('span');
+      span.textContent = service;
+      div.appendChild(span);
+      additionalServicesDiv.appendChild(div);
+    });
+
+    // Handle service type change
+    const serviceTypeSelect = document.getElementById('serviceType');
+    const treatmentCategoryContainer = document.getElementById('treatmentCategoryContainer');
+
+    serviceTypeSelect.addEventListener('change', () => {
+      if (serviceTypeSelect.value === 'Medical Treatment') {
+        treatmentCategoryContainer.classList.remove('hidden');
+      } else {
+        treatmentCategoryContainer.classList.add('hidden');
+      }
+    });
+
+    // Calculate costs
+    const calculateButton = document.getElementById('calculateButton');
+    const resultsDiv = document.getElementById('results');
+    const medicalCostsP = document.getElementById('medicalCosts');
+    const travelCostsP = document.getElementById('travelCosts');
+    const additionalCostsP = document.getElementById('additionalCosts');
+    const totalCostUSDP = document.getElementById('totalCostUSD');
+    const totalCostNGNP = document.getElementById('totalCostNGN');
+
+    calculateButton.addEventListener('click', () => {
+      const destination = destinationSelect.value;
+      const serviceType = serviceTypeSelect.value;
+      const treatmentCategory = treatmentCategorySelect.value;
+      const lengthOfStay = parseInt(document.getElementById('lengthOfStay').value) || 0;
+      const accommodationType = accommodationTypeSelect.value;
+      const additionalServices = Array.from(document.querySelectorAll('#additionalServices input:checked')).map(input => input.value);
+
+      const destinationMultiplier = baseCosts.destinations[destination] || 1;
+      const treatmentCost = baseCosts.treatments[treatmentCategory || serviceType] || 0;
+      const accommodationCost = baseCosts.accommodation[accommodationType] * lengthOfStay || 0;
+      const additionalServicesCost = additionalServices.reduce((sum, service) =>
+        sum + (baseCosts.additionalServices[service] || 0), 0);
+
+      const medicalCosts = treatmentCost * destinationMultiplier;
+      const travelCosts = accommodationCost + 2000; // Base flight cost
+      const totalCost = medicalCosts + travelCosts + additionalServicesCost;
+
+      medicalCostsP.textContent = `$${medicalCosts.toLocaleString()}`;
+      travelCostsP.textContent = `$${travelCosts.toLocaleString()}`;
+      additionalCostsP.textContent = `$${additionalServicesCost.toLocaleString()}`;
+      totalCostUSDP.textContent = `$${totalCost.toLocaleString()} USD`;
+      totalCostNGNP.textContent = `₦${(totalCost * 1550).toLocaleString()} NGN`;
+
+      resultsDiv.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
