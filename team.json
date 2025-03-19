@@ -1,0 +1,50 @@
+[
+    {
+        "name": "David Cooper",
+        "position": "Co Founder",
+        "image": "images/resource/team-1.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "Reena Scot",
+        "position": "Co Founder",
+        "image": "images/resource/team-2.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "Christine Eve",
+        "position": "Manager",
+        "image": "images/resource/team-3.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "John Albert",
+        "position": "Designer",
+        "image": "images/resource/team-4.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "Rose Ford",
+        "position": "Co Founder",
+        "image": "images/resource/team-5.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "Mike Hardson",
+        "position": "Developer",
+        "image": "images/resource/team-6.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "Jessica Brown",
+        "position": "Marketer",
+        "image": "images/update-26-02-2021/team/team-n-1-1.jpg",
+        "link": "login.html"
+    },
+    {
+        "name": "Kevin Martin",
+        "position": "Designer",
+        "image": "images/update-26-02-2021/team/team-n-2-2.jpg",
+        "link": "login.html"
+    }
+]

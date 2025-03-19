@@ -37,6 +37,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    <style>
+        /* Cookie Popup Styles */
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+}
+
+.cookie-banner p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.cookie-banner a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.cookie-buttons {
+    margin-top: 10px;
+}
+
+.cookie-buttons .btn {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.cookie-buttons .btn:hover {
+    background: #45a049;
+}
+
+/* Cookie Popup */
+.cookie-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    display: none;
+}
+
+.cookie-popup-content {
+    text-align: center;
+}
+
+.cookie-popup h3 {
+    margin-top: 0;
+}
+
+.cookie-popup-buttons .btn {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.cookie-popup-buttons .btn:hover {
+    background: #45a049;
+}
+
+.cookie-policy-link {
+    display: block;
+    margin-top: 10px;
+    color: #4CAF50;
+    text-decoration: underline;
+}
+    </style>
 </head>
 
 <body>
@@ -54,10 +138,10 @@
                 <div class="inner-container clearfix">
                     <!--Logo-->
                     <div class="logo-box">
-                        <div class="logo"><a href="index.html" title="Homecare Nigeria"><img
+                        <div class="logo"><a href="index.html" title="Excelsia Health"><img
                                     src="images/logo-dark.png" id="dLogo" class="main-logo"
-                                    alt="Homecare Nigeria"
-                                    title="Homecare Nigeria"></a></div>
+                                    alt="Excelsia Health"
+                                    title="Excelsia Health"></a></div>
                     </div>
                     <div class="nav-outer clearfix">
                         <!--Mobile Navigation Toggler-->
@@ -78,14 +162,14 @@
                                     <li class="dropdown">
                                         <a href="partners.html">Partners</a>
                                         <ul>
-                                            <li class="dropdown"><a href="partners.html">Our Partners</a></li>
-                                            <li><a href="partnerswithus.html">Partner With Us</a></li>
+                                            <li class="dropdown"><a href="ourpartners.html">Our Partners</a></li>
+                                            <li><a href="partnerwithus.html">Partner With Us</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown"><a href="services.html">Services</a>
                                         <ul>
                                             <li class="dropdown">
-                                                <a href="services.html">HomeCare Services</a>
+                                                <a href="homecareservice.html">HomeCare Services</a>
                                                 <ul>
                                                     <li><a href="domiciliary.html">Domiciliary Care</a></li>
                                                     <li><a href="specialist.html">Specialist Care</a></li>
@@ -93,13 +177,13 @@
                                                     <li><a href="homecarefaq.html">FAQ</a></li>
                                                     <li><a href="homecarepricing.html">Pricing</a></li>
                                                     <li><a href="qualityassurance.html">Quality Assurance</a></li>
-                                                    <li><a href="careers.html">Careers</a></li>
-                                                    <li><a href="partnership.html">Partnership</a></li>
+                                                    <!-- <li><a href="careers.html">Careers</a></li> -->
+                                                    <!-- <li><a href="partnership.html">Partnership</a></li> -->
                                                     <li><a href="emergency.html">Emergency Care</a></li>
                                                 </ul>
                                             </li>
                                             <li class="dropdown">
-                                                <a href="about.html">Health Travels</a>
+                                                <a href="about.html">Excelsia Health Travels</a>
                                                 <ul>
                                                     <li><a href="procedure.html">Procedures</a></li>
                                                     <li><a href="destination.html">Destination</a></li>
@@ -110,9 +194,10 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="">Find Carers</a></li>
+                                    <li><a href="carer.html">Find Carers</a></li>
                                     <li><a href="blog-grid.html">Blog</a></li>
                                     <li><a href="calculator.html">Calculator</a></li>
+                                    <li><a href="testimonials.html">Testimonial</a></li>
                                     <li><a href="contact-2.html">Consultation</a></li>
                                     <div class="other-links clearfix">
                                         <!--Search Btn-->
@@ -160,10 +245,10 @@
                     <p> </p>
                     <p><a href="mailto:info@excelsiahealth.net">info@excelsiahealth.net</a> <br> <a href="tel: +234(0)9059735426"> +234(0)9059735426</a></p>
                     <div class="side-menu__social">
-                        <a href="#"><i class="fab fa-facebook-square"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <li><a href="https://www.facebook.com/excelsiahealth/"><span class="fab fa-facebook-square"></span></a></li>
+                                        <li><a href="https://x.com/ExcelsiaHealth"><span class="fab fa-twitter"></span></a></li>
+                                        <li><a href="https://www.instagram.com/ExcelsiaHealth/"><span class="fab fa-instagram"></span></a></li>
+                                        <li><a href="https://ng.linkedin.com/company/excelsiahealth"><span class="fab fa-linkedin"></span></a></li>
                     </div>
                 </div><!-- /.side-menu__content -->
             </div><!-- /.side-menu__block-inner -->
@@ -283,13 +368,17 @@
                                     <div class="tab" id="tab-3">
                                         <div class="content">
                                             <div class="text clearfix">
-                                                <ul style="list-style-type: square;">
-                                                    <li style="list-style-type: square;">Experienced and compassionate care teams.</li>
-                                                    <li style="list-style-type: square;">Affordable and personalized healthcare solutions.</li>
-                                                    <li style="list-style-type: square;">Access to world-class hospitals and healthcare providers.</li>
-                                                    <li style="list-style-type: square;">If you are going to use a passage.</li>
-                                                    <li style="list-style-type: square;">24/7 customer support.</li>
-                                                </ul>
+                                                <ul>
+                                                    <li style="list-style-type: square;"><strong>Compassion</strong> We prioritize empathy and understanding in every interaction, ensuring our clients feel valued, respected, and cared for throughout their journey.</li>
+                                                    <li style="list-style-type: square;"><strong>Excellence</strong> We are committed to delivering the highest standards of service in medical and birth tourism, home care, and all future services, striving for exceptional outcomes in everything we do.</li>
+                                                    <li style="list-style-type: square;"><strong>Integrity</strong> We operate with honesty, transparency, and accountability, building trust with our clients, partners, and communities.</li>
+                                                    <li style="list-style-type: square;"><strong>Innovation</strong> We embrace creativity and forward-thinking solutions to continuously improve our services and adapt to the evolving needs of our clients.</li>
+                                                    <li style="list-style-type: square;"><strong>Personalized Care</strong> We believe in tailoring our services to meet the unique needs and preferences of each client, ensuring a seamless and fulfilling experience.</li>
+                                                    <li style="list-style-type: square;"><strong>Collaboration</strong> We foster strong partnerships with healthcare providers, clients, and communities to deliver comprehensive and integrated care solutions.</li>
+                                                    <li style="list-style-type: square;"><strong>Accessibility</strong> We are dedicated to making quality healthcare and support services available and affordable to individuals and families, regardless of their location or circumstances.</li>
+                                                    <li style="list-style-type: square;"><strong>Growth and Adaptability</strong> We are committed to expanding our services and capabilities to meet future demands, ensuring we remain a trusted partner in health and wellness.</li>
+                                                  </ul>
+                                                  
                                             </div>
                                         </div>
                                     </div>
@@ -860,7 +949,7 @@
                                 <div class="widget-content">
                                     <h6>Contact</h6>
                                     <ul class="contact-info">
-                                        <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9059735426">+234(0)9059735426</a></li>
+                                        <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9059735426">+234(0)905 973 5426</a></li>
                                         <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9018410770">+234(0)901 841 0770</a></li>
                                         <li><span class="icon flaticon-email-2"></span><a
                                                 href="mailto:info@excelsiahealth.net">info@excelsiahealth.net</a></li>
@@ -910,6 +999,28 @@
     </div>
     <!--End pagewrapper-->
 
+    <!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner">
+    <p>We use cookies to ensure you get the best experience on our website. <a href="cookie-policy.html" id="read-more">Read more</a></p>
+    <div class="cookie-buttons">
+        <button id="accept-cookies" class="btn">Accept</button>
+        <button id="decline-cookies" class="btn">Decline</button>
+    </div>
+</div>
+
+<!-- Cookie Popup -->
+<div id="cookie-popup" class="cookie-popup">
+    <div class="cookie-popup-content">
+        <h3>Cookie Settings</h3>
+        <p>We use cookies to enhance your experience. By clicking "Accept", you agree to the use of cookies.</p>
+        <div class="cookie-popup-buttons">
+            <button id="popup-accept-cookies" class="btn">Accept</button>
+            <button id="popup-decline-cookies" class="btn">Decline</button>
+        </div>
+        <a href="cookie-policy.html" class="cookie-policy-link">Read our Cookie Policy</a>
+    </div>
+</div>
+
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 
 
@@ -934,6 +1045,55 @@
     <script src="js/lang.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/color-switcher.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const cookiePopup = document.getElementById('cookie-popup');
+            const acceptCookies = document.getElementById('accept-cookies');
+            const declineCookies = document.getElementById('decline-cookies');
+            const popupAcceptCookies = document.getElementById('popup-accept-cookies');
+            const popupDeclineCookies = document.getElementById('popup-decline-cookies');
+            const readMoreLink = document.getElementById('read-more');
+    
+            // Check if the user has already made a choice
+            if (!Cookies.get('cookies-accepted')) {
+                cookieBanner.style.display = 'block';
+            }
+    
+            // Handle accept cookies from banner
+            acceptCookies.addEventListener('click', function() {
+                Cookies.set('cookies-accepted', 'true', { expires: 365 });
+                cookieBanner.style.display = 'none';
+            });
+    
+            // Handle decline cookies from banner
+            declineCookies.addEventListener('click', function() {
+                Cookies.set('cookies-accepted', 'false', { expires: 365 });
+                cookieBanner.style.display = 'none';
+            });
+    
+            // Handle accept cookies from popup
+            popupAcceptCookies.addEventListener('click', function() {
+                Cookies.set('cookies-accepted', 'true', { expires: 365 });
+                cookiePopup.style.display = 'none';
+            });
+    
+            // Handle decline cookies from popup
+            popupDeclineCookies.addEventListener('click', function() {
+                Cookies.set('cookies-accepted', 'false', { expires: 365 });
+                cookiePopup.style.display = 'none';
+            });
+    
+            // Show popup when "Read more" is clicked
+            readMoreLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                cookieBanner.style.display = 'none';
+                cookiePopup.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 
 </html>

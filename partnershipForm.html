@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Application - Excelsia Health</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .required {
+            color: #ff4444;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Partnership Application Form</h2>
+        <p>Thank you for your interest in partnering with Excelsia Health. Please complete this form to begin the partnership process.</p>
+
+        <form id="partnershipForm">
+            <div class="form-group">
+                <label>Organization Type <span class="required">*</span></label>
+                <select required>
+                    <option value="">Select organization type</option>
+                    <option value="hospital">Hospital</option>
+                    <option value="clinic">Medical Clinic</option>
+                    <option value="healthcare_provider">Healthcare Provider</option>
+                    <option value="travel_agency">Travel Agency</option>
+                    <option value="insurance">Insurance Provider</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Organization Name <span class="required">*</span></label>
+                <input type="text" required>
+            </div>
+
+            <div class="form-group">
+                <label>Website</label>
+                <input type="url" placeholder="https://">
+            </div>
+
+            <div class="form-group">
+                <label>Years in Operation <span class="required">*</span></label>
+                <input type="number" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label>Primary Contact Information</label>
+                <div style="margin-top: 10px;">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="text" placeholder="Job Title" required>
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Proposed Partnership Type <span class="required">*</span></label>
+                <select required>
+                    <option value="">Select partnership type</option>
+                    <option value="medical_services">Medical Services Provider</option>
+                    <option value="birth_tourism">Birth Tourism Services</option>
+                    <option value="home_care">Home Care Services</option>
+                    <option value="referral">Referral Partner</option>
+                    <option value="strategic">Strategic Alliance</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Service Areas/Locations <span class="required">*</span></label>
+                <textarea required placeholder="Please list the geographical areas where you operate"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Licenses and Certifications <span class="required">*</span></label>
+                <textarea required placeholder="Please list relevant licenses, certifications, and accreditations"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Partnership Goals and Objectives</label>
+                <textarea placeholder="Please describe your goals for this partnership and how it aligns with your organization's objectives"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Additional Information</label>
+                <textarea placeholder="Please provide any additional information that would be relevant to this partnership application"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" required>
+                    I confirm that all information provided is accurate and complete. I understand that false information may result in the rejection of the partnership application.
+                </label>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
