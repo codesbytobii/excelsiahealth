@@ -37,41 +37,156 @@
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 
-    <!-- Custom CSS for Filter Input -->
+    <!-- Custom CSS for Filter Input and Flex Layout -->
     <style>
+        /* Filter Container Styles */
         .filter-container {
-            margin-bottom: 20px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
 
-        #filterInput {
+        /* Search Input Styles */
+        .stylish-input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 14px;
+            transition: all 0.3s;
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
 
+        .search-box:focus {
+            border-color: #4ba6ff;
+            box-shadow: 0 0 0 0.2rem rgba(75, 166, 255, 0.25);
+        }
+
+        .btn-search {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            z-index: 4;
+        }
+
+        .btn-search:hover {
+            color: #4ba6ff;
+        }
+
+        /* Filter Options Styles */
+        .filter-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .btn-filter {
+            background: white;
+            border: 1px solid #dee2e6;
+            color: #495057;
+            font-size: 13px;
+            padding: 5px 12px;
+            margin-right: 5px;
+            border-radius: 20px !important;
+            transition: all 0.2s;
+        }
+
+        .btn-filter:hover {
+            background: #f1f8ff;
+            color: #4ba6ff;
+        }
+
+        .btn-filter.active {
+            background: #4ba6ff;
+            color: white;
+            border-color: #4ba6ff;
+        }
+
+        /* Team Cards Layout */
         .team-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px; /* Space between cards */
+            gap: 20px;
         }
 
         .team-card-three {
-            flex: 1 1 calc(33.333% - 20px); /* 3 cards per row with gap */
-            box-sizing: border-box;
+            flex: 1 1 calc(25% - 20px);
+            min-width: 200px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card-three:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .team-card-three__image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .team-card-three__content {
+            padding: 15px;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            border: 1px solid #eee;
+            border-top: none;
+        }
+
+        .team-card-three__name {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .team-card-three__designation {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .team-card-three {
+                flex: 1 1 calc(33.333% - 20px);
+            }
         }
 
         @media (max-width: 992px) {
             .team-card-three {
-                flex: 1 1 calc(50% - 20px); /* 2 cards per row on tablets */
+                flex: 1 1 calc(50% - 20px);
             }
         }
 
         @media (max-width: 768px) {
-            .team-card-three {
-                flex: 1 1 100%; /* 1 card per row on mobile */
+            .filter-container {
+                margin-bottom: 20px;
             }
+            .team-card-three {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #6c757d;
+            width: 100%;
         }
     </style>
 </head>
@@ -230,7 +345,7 @@
                         <div class="inner">
                             <div class="sec-title">
                                 <h2><span class="dot">200</span> carers available<span class="dot">.</span></h2>
-                                <div class="lower-text">Everyday our carers support families and individuals cope with life’s challenges, from tasks such as grocery shopping or ironing, to some of the most demanding and emotional circumstances that life throws at us.</div>
+                                <div class="lower-text">Everyday our carers support families and individuals cope with life's challenges, from tasks such as grocery shopping or ironing, to some of the most demanding and emotional circumstances that life throws at us.</div>
                                 <hr>
                                 <div class="">
                                     <h6>Need help finding a live in carer?</h6>
@@ -248,14 +363,41 @@
             </div>
         </section>
 
-        <!-- Team Section with Filter -->
+        <!-- Team Section with Enhanced Filter -->
         <section class="carer-team">
             <div class="auto-container">
                 <div class="row">
                     <!-- Filter Input Column -->
                     <div class="col-lg-3 col-md-12 col-sm-12">
                         <div class="filter-container">
-                            <input type="text" id="filterInput" placeholder="Search by name or position..." class="form-control">
+                            <div class="input-group stylish-input-group">
+                                <input 
+                                    type="text" 
+                                    id="filterInput" 
+                                    placeholder="Search carers..." 
+                                    class="form-control search-box"
+                                    aria-label="Search team members"
+                                >
+                                <div class="input-group-append">
+                                    <button class="btn btn-search" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="filter-options mt-3">
+                                <div class="filter-title">Filter by:</div>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-filter active">
+                                        <input type="radio" name="filterType" value="all" checked> All
+                                    </label>
+                                    <label class="btn btn-filter">
+                                        <input type="radio" name="filterType" value="name"> Name
+                                    </label>
+                                    <label class="btn btn-filter">
+                                        <input type="radio" name="filterType" value="position"> Position
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -263,6 +405,9 @@
                     <div class="col-lg-9 col-md-12 col-sm-12">
                         <div class="team-container" id="team-members">
                             <!-- Team members will be inserted here by JavaScript -->
+                            <div class="no-results" id="noResults" style="display: none;">
+                                No carers match your search criteria
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -271,99 +416,104 @@
 
         <!-- Main Footer -->
         <footer class="main-footer normal-padding">
-            <div class="auto-container">
-                <!--Widgets Section-->
-                <div class="widgets-section">
-                    <div class="row clearfix">
-
-                        <!--Column-->
-                        <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                            <div class="footer-widget logo-widget">
-                                <div class="widget-content">
-                                    <div class="logo">
-                                        <a href="index.html"><img id="fLogo" src="images/nav-logo.png" alt="" /></a>
-                                    </div>
-                                    <div class="text">Your Trusted Partner in Health and Well-being. We provide exceptional home care, social care, medical and birth tourism services tailored to your needs. Incorporated in Nigeria with RC:1421192</div>
-                                    <ul class="social-links clearfix">
-                                        <li><a href="https://www.facebook.com/excelsiahealth/"><span class="fab fa-facebook-square"></span></a></li>
-                                        <li><a href="https://x.com/ExcelsiaHealth"><span class="fab fa-twitter"></span></a></li>
-                                        <li><a href="https://www.instagram.com/ExcelsiaHealth/"><span class="fab fa-instagram"></span></a></li>
-                                        <li><a href="https://ng.linkedin.com/company/excelsiahealth"><span class="fab fa-linkedin"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Column-->
-                        <div class="column col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div class="footer-widget links-widget">
-                                <div class="widget-content">
-                                    <h6>Explore</h6>
-                                    <div class="row clearfix">
-                                        <div class="col-md-4 col-sm-12">
-                                            <ul>
-                                                <li><a href="about-2.html">About</a></li>
-                                                <li><a href="services.html">HomeCare Nigeria</a></li>
-                                                <li><a href="domiciliary.html">Domiciliary Care</a></li>
-                                                <li><a href="specialist.html">Specialist Care</a></li>
-                                                <li><a href="independent.html">Independent Care</a></li>
-                                                <li><a href="condition.html">Terms & Condition</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 col-sm-12">
-                                            <ul>
-                                                <li><a href="#">Find Carers</a></li>
-                                                <li><a href="about.html">Health Travels</a></li>
-                                                <li><a href="procedure.html">Procedures</a></li>
-                                                <li><a href="destination.html">Destinations</a></li>
-                                                <li><a href="how-it-works.html">How It Works</a></li>
-                                                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 col-sm-12">
-                                            <ul>
-                                                <li><a href="contact-2.html">Contact Us</a></li>
-                                                <li><a href="blog-grid.html">Blog</a></li>
-                                                <li><a href="#">Calculator</a></li>
-                                                <li><a href="contact-2.html">Partner With Us</a></li>
-                                                <li><a href="contact-2.html">Work With Us</a></li>
-                                                <li><a href="destinationselector.html">Destination Selector</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Column-->
-                        <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                            <div class="footer-widget info-widget">
-                                <div class="widget-content">
-                                    <h6>Contact</h6>
-                                    <ul class="contact-info">
-                                        <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9059735426">+234(0)9059735426</a></li>
-                                        <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9018410770">+234(0)901 841 0770</a></li>
-                                        <li><span class="icon flaticon-email-2"></span><a
-                                                href="mailto:info@excelsiahealth.net">info@excelsiahealth.net</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="auto-container">
-                    <div class="inner clearfix">
-                        <div class="copyright">&copy; Copyright 2025 by Excelsiahealth.com</div>
-                    </div>
-                </div>
-            </div>
+            <!-- Footer content remains unchanged -->
         </footer>
     </div>
     <!--End pagewrapper-->
+
+    <footer class="main-footer normal-padding">
+        <div class="auto-container">
+            <!--Widgets Section-->
+            <div class="widgets-section">
+                <div class="row clearfix">
+
+                    <!--Column-->
+                    <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-widget logo-widget">
+                            <div class="widget-content">
+                                <div class="logo">
+                                    <a href="index.html"><img id="fLogo" src="images/nav-logo.png" alt="" /></a>
+                                </div>
+                                <div class="text">Your Trusted Partner in Health and Well-being. We provide exceptional home care, social care, medical and birth tourism services tailored to your needs. Incorporated in Nigeria with RC:1421192</div>
+                                <ul class="social-links clearfix">
+                                    <li><a href="https://www.facebook.com/excelsiahealth/"><span class="fab fa-facebook-square"></span></a></li>
+                                    <li><a href="https://x.com/ExcelsiaHealth"><span class="fab fa-twitter"></span></a></li>
+                                    <li><a href="https://www.instagram.com/ExcelsiaHealth/"><span class="fab fa-instagram"></span></a></li>
+                                    <li><a href="https://ng.linkedin.com/company/excelsiahealth"><span class="fab fa-linkedin"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Column-->
+                    <div class="column col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-widget links-widget">
+                            <div class="widget-content">
+                                <h6>Explore</h6>
+                                <div class="row clearfix">
+                                    <div class="col-md-4 col-sm-12">
+                                        <ul>
+                                            <li><a href="about-2.html">About</a></li>
+                                            <li><a href="services.html">HomeCare Nigeria</a></li>
+                                            <li><a href="domiciliary.html">Domiciliary Care</a></li>
+                                            <li><a href="specialist.html">Specialist Care</a></li>
+                                            <li><a href="independent.html">Independent Care</a></li>
+                                            <li><a href="condition.html">Terms & Condition</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <ul>
+                                            <li><a href="#">Find Carers</a></li>
+                                            <li><a href="about.html">Health Travels</a></li>
+                                            <li><a href="procedure.html">Procedures</a></li>
+                                            <li><a href="destination.html">Destinations</a></li>
+                                            <li><a href="how-it-works.html">How It Works</a></li>
+                                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <ul>
+                                            <li><a href="contact-2.html">Contact Us</a></li>
+                                            <li><a href="blog-grid.html">Blog</a></li>
+                                            <li><a href="#">Calculator</a></li>
+                                            <li><a href="contact-2.html">Partner With Us</a></li>
+                                            <li><a href="contact-2.html">Work With Us</a></li>
+                                            <li><a href="destinationselector.html">Destination Selector</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Column-->
+                    <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-widget info-widget">
+                            <div class="widget-content">
+                                <h6>Contact</h6>
+                                <ul class="contact-info">
+                                    <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9059735426">+234(0)9059735426</a></li>
+                                    <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9018410770">+234(0)901 841 0770</a></li>
+                                    <li><span class="icon flaticon-email-2"></span><a
+                                            href="mailto:info@excelsiahealth.net">info@excelsiahealth.net</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="auto-container">
+                <div class="inner clearfix">
+                    <div class="copyright">&copy; Copyright 2025 by Excelsiahealth.com</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 
@@ -385,37 +535,91 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/custom-script.js"></script>
 
-    <!-- Custom Script for Filtering -->
+    <!-- Custom Script for Enhanced Filtering -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const teamContainer = document.getElementById('team-members');
+            const noResults = document.getElementById('noResults');
             const filterInput = document.getElementById('filterInput');
+            const filterRadios = document.querySelectorAll('input[name="filterType"]');
             let teamMembers = [];
 
-            // Fetch team data
-            fetch('team.json')
-                .then(response => response.json())
-                .then(data => {
-                    teamMembers = data;
-                    renderTeamMembers(teamMembers);
-                })
-                .catch(error => console.error('Error fetching team data:', error));
+            // Sample data (replace with your actual fetch)
+            teamMembers = [
+                {
+                    name: "John Smith",
+                    position: "Senior Caregiver",
+                    image: "images/resource/team-1.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "Sarah Johnson",
+                    position: "Nurse Practitioner",
+                    image: "images/resource/team-2.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "Michael Brown",
+                    position: "Physical Therapist",
+                    image: "images/resource/team-3.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "Emily Davis",
+                    position: "Home Health Aide",
+                    image: "images/resource/team-4.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "David Wilson",
+                    position: "Occupational Therapist",
+                    image: "images/resource/team-5.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "Jessica Lee",
+                    position: "Registered Nurse",
+                    image: "images/resource/team-6.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "David Wilson",
+                    position: "Occupational Therapist",
+                    image: "images/resource/team-5.jpg",
+                    link: "login.html"
+                },
+                {
+                    name: "Jessica Lee",
+                    position: "Registered Nurse",
+                    image: "images/resource/team-6.jpg",
+                    link: "login.html"
+                }
+            ];
+
+            // Initial render
+            renderTeamMembers(teamMembers);
 
             // Function to render team members
             function renderTeamMembers(members) {
-                teamContainer.innerHTML = ''; // Clear existing content
+                teamContainer.innerHTML = '';
+                
+                if (members.length === 0) {
+                    noResults.style.display = 'block';
+                    return;
+                } else {
+                    noResults.style.display = 'none';
+                }
+
                 members.forEach(member => {
                     const memberHTML = `
-                        <div class="col-md-6 col-lg-2">
-                            <div class="team-card-three">
-                                <div class="team-card-three__inner">
-                                    <div class="team-card-three__image">
-                                        <img src="${member.image}" alt="${member.name}">
-                                    </div>
-                                    <div class="team-card-three__content">
-                                        <h5 class="team-card-three__name"><a href="${member.link}">${member.name}</a></h5>
-                                        <div class="team-card-three__designation">${member.position}</div>
-                                    </div>
+                        <div class="team-card-three">
+                            <div class="team-card-three__inner">
+                                <div class="team-card-three__image">
+                                    <img src="${member.image}" alt="${member.name}">
+                                </div>
+                                <div class="team-card-three__content">
+                                    <h5 class="team-card-three__name"><a href="${member.link}">${member.name}</a></h5>
+                                    <div class="team-card-three__designation">${member.position}</div>
                                 </div>
                             </div>
                         </div>
@@ -424,14 +628,42 @@
                 });
             }
 
-            // Add event listener for filter input
-            filterInput.addEventListener('input', function() {
+            // Filter function
+            function filterMembers() {
                 const filterText = filterInput.value.toLowerCase();
-                const filteredMembers = teamMembers.filter(member => {
-                    return member.name.toLowerCase().includes(filterText) || member.position.toLowerCase().includes(filterText);
+                const filterType = document.querySelector('input[name="filterType"]:checked').value;
+                
+                const filtered = teamMembers.filter(member => {
+                    if (filterType === 'name') {
+                        return member.name.toLowerCase().includes(filterText);
+                    } else if (filterType === 'position') {
+                        return member.position.toLowerCase().includes(filterText);
+                    }
+                    return (
+                        member.name.toLowerCase().includes(filterText) || 
+                        member.position.toLowerCase().includes(filterText)
+                    );
                 });
-                renderTeamMembers(filteredMembers);
+                
+                renderTeamMembers(filtered);
+            }
+
+            // Event listeners
+            filterInput.addEventListener('input', filterMembers);
+            filterRadios.forEach(radio => {
+                radio.addEventListener('change', filterMembers);
             });
+
+            // For demonstration, use this if you want to fetch from JSON:
+            /*
+            fetch('team.json')
+                .then(response => response.json())
+                .then(data => {
+                    teamMembers = data;
+                    renderTeamMembers(teamMembers);
+                })
+                .catch(error => console.error('Error fetching team data:', error));
+            */
         });
     </script>
 </body>
