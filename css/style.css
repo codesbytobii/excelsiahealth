@@ -5343,6 +5343,11 @@ img.lazy-image.loaded {
   padding-bottom: 90px;
 }
 
+.carer-team {
+  /* padding-top: 120px; */
+  padding-bottom: 90px;
+}
+
 .team-three__about-two {
   background-image: url(../images/background/pattern-2.png);
 }
@@ -11217,7 +11222,7 @@ img.lazy-image.loaded {
   display: block;
   max-width: 770px;
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .contact-section .form-box form .row {
