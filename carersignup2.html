@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excelsia Health - Carer's Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #3498db;
+        }
+        .form-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .subsection {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+        .checkbox-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
+            margin-right: 10px;
+        }
+        .checkbox-item label {
+            display: inline;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        .upload-section {
+            background: #eaf2f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        .upload-item {
+            margin-bottom: 10px;
+        }
+        .upload-item label {
+            margin-bottom: 5px;
+        }
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .form-navigation button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-prev {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .btn-prev:hover {
+            background-color: #7f8c8d;
+        }
+        .btn-next {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-next:hover {
+            background-color: #2980b9;
+        }
+        .btn-submit {
+            background-color: #2ecc71;
+            color: white;
+            /* width: 100%; */
+            /* padding: 12px; */
+        }
+        .btn-submit:hover {
+            background-color: #27ae60;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .section-indicator {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .required:after {
+            content: " *";
+            color: #e74c3c;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Excelsia Health - Carer's Profile</h1>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        
+        <form id="carerProfileForm">
+            <!-- Personal Information Section -->
+            <div class="form-section active" id="section1">
+                <div class="section-indicator">Section 1 of 7 - Personal Information</div>
+                
+                <label for="fullName" class="required">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="profilePicture">Profile Picture (JPEG/PNG, max 5MB)</label>
+                <input type="file" id="profilePicture" name="profilePicture" accept="image/jpeg,image/png">
+                
+                <label for="email" class="required">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone" class="required">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-next" onclick="nextSection(1)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Address and Location Details Section -->
+            <div class="form-section" id="section2">
+                <div class="section-indicator">Section 2 of 7 - Address and Location</div>
+                
+                <label for="address" class="required">Full Residential Address</label>
+                <textarea id="address" name="address" required></textarea>
+                
+                <label for="city" class="required">City</label>
+                <input type="text" id="city" name="city" required>
+                
+                <label for="town">Town</label>
+                <input type="text" id="town" name="town">
+                
+                <label for="state" class="required">State/Region</label>
+                <input type="text" id="state" name="state" required>
+                
+                <label for="landmarks">Nearest Landmarks and Bus-stops</label>
+                <textarea id="landmarks" name="landmarks"></textarea>
+                
+                <label for="currentLocation">Current Location (if different from permanent address)</label>
+                <input type="text" id="currentLocation" name="currentLocation">
+                
+                <div class="checkbox-group">
+                    <label>Willingness to Relocate:</label>
+                    <div class="checkbox-item">
+                        <input type="radio" id="relocateYes" name="relocate" value="Yes">
+                        <label for="relocateYes">Yes</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="relocateNo" name="relocate" value="No">
+                        <label for="relocateNo">No</label>
+                    </div>
+                </div>
+                
+                <label for="preferredLocations">Preferred Work Locations</label>
+                <textarea id="preferredLocations" name="preferredLocations"></textarea>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(2)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextSection(2)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="form-section" id="section3">
+                <div class="section-indicator">Section 3 of 7 - Skills</div>
+                
+                <h3>Basic Skills</h3>
+                <div class="subsection">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dailyLiving" name="basicSkills" value="Daily Living Assistance">
+                        <label for="dailyLiving">Daily Living Assistance</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="householdMgmt" name="basicSkills" value="Household Management">
+                        <label for="householdMgmt">Household Management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="companionship" name="basicSkills" value="Companionship">
+                        <label for="companionship">Companionship</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="timeMgmt" name="basicSkills" value="Time Management">
+                        <label for="timeMgmt">Time Management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="communication" name="basicSkills" value="Communication Skills">
+                        <label for="communication">Communication Skills</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="empathy" name="basicSkills" value="Empathy and Patience">
+                        <label for="empathy">Empathy and Patience</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="firstAid" name="basicSkills" value="Basic First Aid">
+                        <label for="firstAid">Basic First Aid</label>
+                    </div>
+                </div>
+                
+                <h3>Advanced/Specialized Skills</h3>
+                <div class="subsection">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="medicalCare" name="advancedSkills" value="Specialized Medical Care">
+                        <label for="medicalCare">Specialized Medical Care</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dementiaCare" name="advancedSkills" value="Dementia and Alzheimer's Care">
+                        <label for="dementiaCare">Dementia and Alzheimer's Care</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="palliativeCare" name="advancedSkills" value="Palliative and End-of-Life Care">
+                        <label for="palliativeCare">Palliative and End-of-Life Care</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="disabilitySupport" name="advancedSkills" value="Disability Support">
+                        <label for="disabilitySupport">Disability Support</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="behavioralSupport" name="advancedSkills" value="Behavioral and Emotional Support">
+                        <label for="behavioralSupport">Behavioral and Emotional Support</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="culturalSensitivity" name="advancedSkills" value="Cultural Sensitivity">
+                        <label for="culturalSensitivity">Cultural Sensitivity</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="advancedFirstAid" name="advancedSkills" value="Advanced First Aid and Emergency Response">
+                        <label for="advancedFirstAid">Advanced First Aid and Emergency Response</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="childcare" name="advancedSkills" value="Childcare Expertise">
+                        <label for="childcare">Childcare Expertise</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="transportation" name="advancedSkills" value="Transportation and Errands">
+                        <label for="transportation">Transportation and Errands</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="specializedTraining" name="advancedSkills" value="Specialized Training">
+                        <label for="specializedTraining">Specialized Training</label>
+                    </div>
+                </div>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(3)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextSection(3)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Experience Section -->
+            <div class="form-section" id="section4">
+                <div class="section-indicator">Section 4 of 7 - Experience</div>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expDailyLiving" name="experience" value="Daily Living Assistance">
+                        <label for="expDailyLiving">Daily Living Assistance</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expHousehold" name="experience" value="Household Management">
+                        <label for="expHousehold">Household Management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expCompanionship" name="experience" value="Companionship and Emotional Support">
+                        <label for="expCompanionship">Companionship and Emotional Support</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expSpecialized" name="experience" value="Specialized Care">
+                        <label for="expSpecialized">Specialized Care</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expHealth" name="experience" value="Health Monitoring">
+                        <label for="expHealth">Health Monitoring</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expChildcare" name="experience" value="Childcare">
+                        <label for="expChildcare">Childcare</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expDisability" name="experience" value="Disability Support">
+                        <label for="expDisability">Disability Support</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expEmergency" name="experience" value="Emergency Response">
+                        <label for="expEmergency">Emergency Response</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expTransport" name="experience" value="Transportation and Errands">
+                        <label for="expTransport">Transportation and Errands</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expCultural" name="experience" value="Cultural Sensitivity">
+                        <label for="expCultural">Cultural Sensitivity</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expProfessional" name="experience" value="Professionalism and Communication">
+                        <label for="expProfessional">Professionalism and Communication</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="expTeam" name="experience" value="Team Collaboration">
+                        <label for="expTeam">Team Collaboration</label>
+                    </div>
+                </div>
+                
+                <label for="experienceDetails">Additional Experience Details</label>
+                <textarea id="experienceDetails" name="experienceDetails"></textarea>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(4)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextSection(4)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Availability Section -->
+            <div class="form-section" id="section5">
+                <div class="section-indicator">Section 5 of 7 - Availability</div>
+                
+                <label for="availability" class="required">Days and Hours Available</label>
+                <textarea id="availability" name="availability" required></textarea>
+                
+                <label>Immediate Start Availability:</label>
+                <div class="checkbox-item">
+                    <input type="radio" id="immediateYes" name="immediateStart" value="Yes" required>
+                    <label for="immediateYes">Yes</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" id="immediateNo" name="immediateStart" value="No">
+                    <label for="immediateNo">No</label>
+                </div>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(5)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextSection(5)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Additional Information Section -->
+            <div class="form-section" id="section6">
+                <div class="section-indicator">Section 6 of 7 - Additional Information</div>
+                
+                <label for="personalStatement" class="required">Personal Statement or Bio (200 words)</label>
+                <textarea id="personalStatement" name="personalStatement" required></textarea>
+                
+                <label for="hobbies">Hobbies or Interests (optional)</label>
+                <textarea id="hobbies" name="hobbies"></textarea>
+                
+                <label class="required">Criminal Background Check/Police Criminal Check</label>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="backgroundCheck" name="backgroundCheck" required>
+                    <label for="backgroundCheck">I confirm I have a clean criminal record</label>
+                </div>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(6)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextSection(6)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Document Uploads Section -->
+            <div class="form-section" id="section7">
+                <div class="section-indicator">Section 7 of 7 - Document Uploads</div>
+                
+                <h3>Personal Identification (upload any 2)</h3>
+                <div class="upload-section">
+                    <div class="upload-item">
+                        <label for="nin">National Identification Number (NIN) Slip or Card</label>
+                        <input type="file" id="nin" name="nin">
+                    </div>
+                    <div class="upload-item">
+                        <label for="passport">International Passport</label>
+                        <input type="file" id="passport" name="passport">
+                    </div>
+                    <div class="upload-item">
+                        <label for="driversLicense">Driver's License</label>
+                        <input type="file" id="driversLicense" name="driversLicense">
+                    </div>
+                    <div class="upload-item">
+                        <label for="votersCard">Voter's Card</label>
+                        <input type="file" id="votersCard" name="votersCard">
+                    </div>
+                </div>
+                
+                <h3>Proof of Address (upload one)</h3>
+                <div class="upload-section">
+                    <div class="upload-item">
+                        <label for="utilityBill">Utility Bill (electricity, water, or internet bill, not older than 3 months)</label>
+                        <input type="file" id="utilityBill" name="utilityBill">
+                    </div>
+                    <div class="upload-item">
+                        <label for="bankStatement">Bank Statement with address (not older than 3 months)</label>
+                        <input type="file" id="bankStatement" name="bankStatement">
+                    </div>
+                    <div class="upload-item">
+                        <label for="tenancyAgreement">Tenancy Agreement or Landlord's Letter (if applicable)</label>
+                        <input type="file" id="tenancyAgreement" name="tenancyAgreement">
+                    </div>
+                </div>
+                
+                <h3>Professional Documents</h3>
+                <div class="upload-section">
+                    <div class="upload-item">
+                        <label for="cv">Updated CV/Resume (pdf/docx)</label>
+                        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                    </div>
+                    <div class="upload-item">
+                        <label for="certificates">Relevant Certificates (e.g., First Aid, CPR, caregiving training)</label>
+                        <input type="file" id="certificates" name="certificates">
+                    </div>
+                    <div class="upload-item">
+                        <label for="licenses">Professional Licenses (if applicable)</label>
+                        <input type="file" id="licenses" name="licenses">
+                    </div>
+                </div>
+                
+                <h3>Background Verification (mandatory)</h3>
+                <div class="upload-section">
+                    <div class="upload-item">
+                        <label for="policeClearance">Police Clearance Certificate</label>
+                        <input type="file" id="policeClearance" name="policeClearance" required>
+                    </div>
+                    <div class="upload-item">
+                        <label for="references">Reference Letters from previous employers or clients</label>
+                        <input type="file" id="references" name="references">
+                    </div>
+                </div>
+                
+                <h3>Health Records</h3>
+                <div class="upload-section">
+                    <div class="upload-item">
+                        <label for="medicalCertificate">Medical Fitness Certificate</label>
+                        <input type="file" id="medicalCertificate" name="medicalCertificate">
+                    </div>
+                    <div class="upload-item">
+                        <label for="vaccinationRecords">Vaccination Records (e.g., COVID-19, Hepatitis B)</label>
+                        <input type="file" id="vaccinationRecords" name="vaccinationRecords">
+                    </div>
+                </div>
+                
+                <h3>Additional Documents</h3>
+                <div class="upload-section">
+                    <div class="upload-item">
+                        <label for="photo">Passport-Sized Photograph (recent, clear, and professional)</label>
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                    </div>
+                    <div class="upload-item">
+                        <label for="codeOfConduct">Signed Code of Conduct or Agreement</label>
+                        <input type="file" id="codeOfConduct" name="codeOfConduct">
+                    </div>
+                    <div class="upload-item">
+                        <label for="bankDetails">Bank Account Details (for salary payments)</label>
+                        <input type="file" id="bankDetails" name="bankDetails">
+                    </div>
+                </div>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(7)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextSection(7)">Next</button>
+                </div>
+            </div>
+            
+            <!-- Other Information Section -->
+            <div class="form-section" id="section8">
+                <div class="section-indicator">Final Section - Other Information</div>
+                
+                <label for="emergencyContact" class="required">Emergency Contact Information</label>
+                <textarea id="emergencyContact" name="emergencyContact" required></textarea>
+                
+                <label>Willingness to Travel:</label>
+                <div class="checkbox-item">
+                    <input type="radio" id="travelYes" name="willingnessToTravel" value="Yes">
+                    <label for="travelYes">Yes</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" id="travelNo" name="willingnessToTravel" value="No">
+                    <label for="travelNo">No</label>
+                </div>
+                
+                <label for="vaccinationStatus">Vaccination Status (if relevant)</label>
+                <input type="text" id="vaccinationStatus" name="vaccinationStatus">
+                
+                <div class="checkbox-item" style="margin-top: 20px;">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent" class="required">I confirm that all information provided is accurate and complete to the best of my knowledge.</label>
+                </div>
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn-prev" onclick="prevSection(8)">Previous</button>
+                    <button type="submit" class="btn-submit">Submit Application</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Track current section
+        let currentSection = 1;
+        const totalSections = 8;
+        
+        // Initialize the form
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+        });
+        
+        // Navigation functions
+        function nextSection(current) {
+            // Validate current section before proceeding
+            if (validateSection(current)) {
+                document.getElementById(`section${current}`).classList.remove('active');
+                currentSection = current + 1;
+                document.getElementById(`section${currentSection}`).classList.add('active');
+                updateProgressBar();
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        function prevSection(current) {
+            document.getElementById(`section${current}`).classList.remove('active');
+            currentSection = current - 1;
+            document.getElementById(`section${currentSection}`).classList.add('active');
+            updateProgressBar();
+            window.scrollTo(0, 0);
+        }
+        
+        function updateProgressBar() {
+            const progressPercentage = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+        }
+        
+        function validateSection(sectionNumber) {
+            // Add validation logic for each section here
+            // For now, we'll just return true
+            return true;
+        }
+    </script>
+</body>
+</html>

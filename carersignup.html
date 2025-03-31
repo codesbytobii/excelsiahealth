@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Excelsia Health | Carer's Signup</title>
+	<!-- Stylesheets -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Teko:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/fontawesome-all.css" rel="stylesheet">
+	<link href="css/owl.css" rel="stylesheet">
+	<link href="css/flaticon.css" rel="stylesheet">
+	<link href="css/linoor-icons-2.css" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/jquery.fancybox.min.css" rel="stylesheet">
+	<link href="css/hover.css" rel="stylesheet">
+	<link href="css/custom-animate.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<!-- rtl css -->
+	<link href="css/rtl.css" rel="stylesheet">
+	<!-- Responsive File -->
+	<link href="css/responsive.css" rel="stylesheet">
+
+	<!-- Color css -->
+	<link rel="stylesheet" id="jssDefault" href="css/colors/color-default.css">
+
+	<link rel="shortcut icon" href="images/favicon.png" id="fav-shortcut" type="image/x-icon">
+	<link rel="icon" href="images/favicon.png" id="fav-icon" type="image/x-icon">
+
+	<!-- Responsive Settings -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+	<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+	<style>
+        :root {
+            --primary-color: #3498db;
+            --primary-dark: #2980b9;
+            --secondary-color: #2ecc71;
+            --secondary-dark: #27ae60;
+            --accent-color: #e74c3c;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-color: #e0e6ed;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        h1, h2, h3 {
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-indicator {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .subsection {
+            margin-left: 15px;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+
+        .required:after {
+            content: " *";
+            color: var(--accent-color);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background-color: var(--light-bg);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="password"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            background-color: var(--white);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group, .radio-group {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group h3, .radio-group h3 {
+            margin-bottom: 15px;
+            color: var(--dark-text);
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .checkbox-group h3::after, .radio-group h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .checkbox-item, .radio-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .radio-item input[type="radio"] {
+            width: auto;
+            margin-right: 12px;
+            margin-bottom: 0;
+        }
+
+        .checkbox-item label, .radio-item label {
+            display: inline;
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .upload-section {
+            background: rgba(234, 242, 248, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border: 1px dashed var(--primary-color);
+        }
+
+        .upload-item {
+            margin-bottom: 15px;
+        }
+
+        .upload-item label {
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--white);
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .form-navigation button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-navigation button i {
+            margin-right: 8px;
+        }
+
+        .btn-prev {
+            background-color: var(--light-text);
+            color: var(--white);
+        }
+
+        .btn-prev:hover {
+            background-color: #6c757d;
+            transform: translateX(-3px);
+        }
+
+        .btn-next {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-next:hover {
+            background-color: var(--primary-dark);
+            transform: translateX(3px);
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 40px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .progress-container {
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: var(--light-text);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, 
+                          rgba(255,255,255,0.1) 0%, 
+                          rgba(255,255,255,0.6) 50%, 
+                          rgba(255,255,255,0.1) 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 25px;
+                margin: 20px auto;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-navigation button {
+                width: 100%;
+            }
+        }
+
+        /* Custom checkbox and radio buttons */
+        .checkbox-item input[type="checkbox"],
+        .radio-item input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .radio-item input[type="radio"] {
+            border-radius: 50%;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked,
+        .radio-item input[type="radio"]:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::after {
+            content: '\2713';
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radio-item input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Form step indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--light-text);
+            margin-bottom: 5px;
+            transition: var(--transition);
+        }
+
+        .step.active .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .step.completed .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--light-text);
+            text-align: center;
+            max-width: 80px;
+        }
+
+        .step.active .step-label {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .step.completed .step-label {
+            color: var(--secondary-color);
+        }
+
+        /* File upload styling */
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 12px 15px;
+            background-color: var(--light-bg);
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload-label:hover {
+            background-color: #e9ecef;
+            border-color: var(--primary-color);
+        }
+
+        .file-upload-label i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        /* Tooltip for important information */
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        .info-tooltip i {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .info-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark-text);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+	<div class="page-wrapper">
+
+		<!-- Preloader -->
+		<div class="preloader">
+			<div class="icon"></div>
+		</div>
+
+		<!-- Main Header -->
+        <header class="main-header header-style-one header-style-four header-style-five">
+            <div class="header-upper">
+                <div class="inner-container clearfix">
+                    <!--Logo-->
+                    <div class="logo-box">
+                        <div class="logo"><a href="index.html" title="Excelsia Health"><img
+                                    src="images/logo-dark.png" id="dLogo" class="main-logo"
+                                    alt="Excelsia Health"
+                                    title="Excelsia Health"></a></div>
+                    </div>
+                    <div class="nav-outer clearfix">
+                        <!--Mobile Navigation Toggler-->
+                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu-2"></span><span class="txt">Menu</span></div>
+
+                        <!-- Main Menu -->
+                        <nav class="main-menu navbar-expand-md navbar-light">
+                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li class="dropdown">
+                                        <a href="about-2.html">About</a>
+                                        <ul>
+                                            <li><a href="team-2.html">Our Team</a></li>
+                                            <li><a href="contact.html">Work with Us</a></li>
+                                            <li><a href="affiliateprogram.html">Affiliate Programme</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="partners.html">Partners</a>
+                                        <ul>
+                                            <li class="dropdown"><a href="ourpartners.html">Our Partners</a></li>
+                                            <li><a href="partnerwithus.html">Partner With Us</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="services.html">Services</a>
+                                        <ul>
+                                            <li class="dropdown">
+                                                <a href="homecareservice.html">HomeCare Services</a>
+                                                <ul>
+                                                    <li><a href="domiciliary.html">Domiciliary Care</a></li>
+                                                    <li><a href="specialist.html">Specialist Care</a></li>
+                                                    <li><a href="independent.html">Independent Care</a></li>
+                                                    <li><a href="homecarefaq.html">FAQ</a></li>
+                                                    <li><a href="homecarepricing.html">Pricing</a></li>
+                                                    <li><a href="qualityassurance.html">Quality Assurance</a></li>
+                                                    <li><a href="emergency.html">Emergency Care</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="about.html">Excelsia Health Travels</a>
+                                                <ul>
+                                                    <li><a href="procedure.html">Procedures</a></li>
+                                                    <li><a href="destination.html">Destination</a></li>
+                                                    <li><a href="how-it-works.html">How it Works</a></li>
+                                                    <li><a href="faqs.html">FAQ</a></li>
+                                                    <li><a href="pricing.html">Pricing</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="carer.html">Find Carers</a></li>
+                                    <li><a href="blog-grid.html">Blog</a></li>
+                                    <li><a href="calculator.html">Calculator</a></li>
+                                    <li><a href="testimonials.html">Testimonial</a></li>
+                                    <li><a href="contact-2.html">Consultation</a></li>
+                                    <div class="other-links clearfix">
+                                        <!--Search Btn-->
+                                        <div class="search-btn">
+                                            <button type="button" class="theme-btn search-toggler"><span class="flaticon-loupe"></span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="other-links clearfix">
+                        <!--Search Btn-->
+                        <div class="search-btn">
+                            <!-- <button type="button" class="theme-btn search-toggler"><span
+                                    class="flaticon-loupe"></span></button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Main Header -->
+
+		<!--Mobile Menu-->
+		<div class="side-menu__block">
+
+
+			<div class="side-menu__block-overlay custom-cursor__overlay">
+				<div class="cursor"></div>
+				<div class="cursor-follower"></div>
+			</div><!-- /.side-menu__block-overlay -->
+			<div class="side-menu__block-inner ">
+				<div class="side-menu__top justify-content-end">
+
+					<a href="#" class="side-menu__toggler side-menu__close-btn"><img src="images/icons/close-1-1.png"
+							alt=""></a>
+				</div><!-- /.side-menu__top -->
+
+
+				<nav class="mobile-nav__container">
+					<!-- content is loading via js -->
+				</nav>
+				<div class="side-menu__sep"></div><!-- /.side-menu__sep -->
+				<div class="side-menu__content">
+					<p>Linoor is a premium Template for Digital Agencies, Start Ups, Small Business and a wide range of
+						other agencies.</p>
+					<p><a href="mailto:info@excelsiahealth.net">info@excelsiahealth.net</a> <br> <a href="tel: +234(0)9059735426">888
+							999 0000</a></p>
+					<div class="side-menu__social">
+						<a href="https://www.facebook.com/excelsiahealth/"><span class="fab fa-facebook-square"></span></a>
+						<a href="https://x.com/ExcelsiaHealth"><span class="fab fa-twitter"></span></a>
+						<a href="https://www.instagram.com/ExcelsiaHealth/"><span class="fab fa-instagram"></span></a>
+						<a href="https://ng.linkedin.com/company/excelsiahealth"><span class="fab fa-linkedin"></span></a>
+					</div>
+				</div><!-- /.side-menu__content -->
+			</div><!-- /.side-menu__block-inner -->
+		</div><!-- /.side-menu__block -->
+
+		<!--Search Popup-->
+		<div class="search-popup">
+			<div class="search-popup__overlay custom-cursor__overlay">
+				<div class="cursor"></div>
+				<div class="cursor-follower"></div>
+			</div><!-- /.search-popup__overlay -->
+			<div class="search-popup__inner">
+				<form action="#" class="search-popup__form">
+					<input type="text" name="search" placeholder="Type here to Search....">
+					<button type="submit"><i class="fa fa-search"></i></button>
+				</form>
+			</div><!-- /.search-popup__inner -->
+		</div><!-- /.search-popup -->
+
+		<!-- Banner Section -->
+		<section class="page-banner">
+			 <div class="image-layer" style="background-image:url(images/pageTitle.jpg);"></div>
+			<div class="shape-1"></div>
+			<div class="shape-2"></div>
+			<div class="banner-inner">
+				<div class="auto-container">
+					<div class="inner-container clearfix">
+						<h1>Join Our Team of Professional Carers</h1>
+						<!-- <div class="page-nav">
+							<ul class="bread-crumb clearfix">
+								<li><a href="index.html">Home</a></li>
+								<li class="active">Contact</li>
+							</ul>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--End Banner Section -->
+
+		<div class="form-container">
+			<!-- <h1>Join Our Team of Professional Carers</h1> -->
+			<p class="text-center" style="margin-bottom: 30px; color: var(--light-text);">Complete this form to apply for a rewarding career with Excelsia Health</p>
+			
+			<!-- Step Indicator -->
+			<div class="step-indicator">
+				<div class="step active" data-step="1">
+					<div class="step-number">1</div>
+					<div class="step-label">Personal Info</div>
+				</div>
+				<div class="step" data-step="2">
+					<div class="step-number">2</div>
+					<div class="step-label">Address</div>
+				</div>
+				<div class="step" data-step="3">
+					<div class="step-number">3</div>
+					<div class="step-label">Skills</div>
+				</div>
+				<div class="step" data-step="4">
+					<div class="step-number">4</div>
+					<div class="step-label">Experience</div>
+				</div>
+				<div class="step" data-step="5">
+					<div class="step-number">5</div>
+					<div class="step-label">Availability</div>
+				</div>
+				<div class="step" data-step="6">
+					<div class="step-number">6</div>
+					<div class="step-label">Additional Info</div>
+				</div>
+				<div class="step" data-step="7">
+					<div class="step-number">7</div>
+					<div class="step-label">Documents</div>
+				</div>
+				<div class="step" data-step="8">
+					<div class="step-number">8</div>
+					<div class="step-label">Final Steps</div>
+				</div>
+			</div>
+			
+			<!-- Progress Bar -->
+			<div class="progress-container">
+				<div class="progress-labels">
+					<span>0%</span>
+					<span>100%</span>
+				</div>
+				<div class="progress-bar">
+					<div class="progress" id="progressBar"></div>
+				</div>
+			</div>
+			
+			<form id="carerProfileForm">
+				<!-- Personal Information Section -->
+				<div class="form-section active" id="section1">
+					<div class="section-indicator">Personal Information</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+							<label for="fullName" class="required">Full Name</label>
+							<input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+						</div>
+						<div class="col-md-6">
+							<label for="profilePicture">Profile Picture</label>
+							<div class="file-upload">
+								<label class="file-upload-label">
+									<i class="fas fa-cloud-upload-alt"></i> Choose File (JPEG/PNG, max 5MB)
+								</label>
+								<input type="file" id="profilePicture" name="profilePicture" accept="image/jpeg,image/png" class="file-upload-input">
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+							<label for="email" class="required">Email</label>
+							<input type="email" id="email" name="email" required placeholder="your.email@example.com">
+						</div>
+						<div class="col-md-6">
+							<label for="phone" class="required">Phone Number</label>
+							<input type="tel" id="phone" name="phone" required placeholder="+234 800 000 0000">
+						</div>
+					</div>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-next" onclick="nextSection(1)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Address and Location Details Section -->
+				<div class="form-section" id="section2">
+					<div class="section-indicator">Address and Location Details</div>
+					
+					<label for="address" class="required">Full Residential Address</label>
+					<textarea id="address" name="address" required placeholder="Enter your complete address including street name, house number, etc."></textarea>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<label for="city" class="required">City</label>
+							<input type="text" id="city" name="city" required placeholder="e.g. Lagos">
+						</div>
+						<div class="col-md-4">
+							<label for="town">Town</label>
+							<input type="text" id="town" name="town" placeholder="e.g. Ikeja">
+						</div>
+						<div class="col-md-4">
+							<label for="state" class="required">State/Region</label>
+							<input type="text" id="state" name="state" required placeholder="e.g. Lagos State">
+						</div>
+					</div>
+					
+					<label for="landmarks">Nearest Landmarks and Bus-stops</label>
+					<textarea id="landmarks" name="landmarks" placeholder="Help us locate you more easily"></textarea>
+					
+					<label for="currentLocation">Current Location (if different from permanent address)</label>
+					<input type="text" id="currentLocation" name="currentLocation" placeholder="Where are you currently staying?">
+					
+					<div class="radio-group">
+						<label>Willingness to Relocate:</label>
+						<div class="radio-item">
+							<input type="radio" id="relocateYes" name="relocate" value="Yes">
+							<label for="relocateYes">Yes, I'm willing to relocate for work</label>
+						</div>
+						<div class="radio-item">
+							<input type="radio" id="relocateNo" name="relocate" value="No">
+							<label for="relocateNo">No, I prefer to work in my current location</label>
+						</div>
+					</div>
+					
+					<label for="preferredLocations">Preferred Work Locations <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">List areas where you'd prefer to work, if any</span></span></label>
+					<textarea id="preferredLocations" name="preferredLocations" placeholder="List areas you prefer to work in, if any"></textarea>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(2)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="button" class="btn-next" onclick="nextSection(2)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Skills Section -->
+				<div class="form-section" id="section3">
+					<div class="section-indicator">Skills and Qualifications</div>
+					
+					<div class="checkbox-group">
+						<h3>Basic Skills <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Select all that apply to your basic caregiving skills</span></span></h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox-item">
+									<input type="checkbox" id="dailyLiving" name="basicSkills" value="Daily Living Assistance">
+									<label for="dailyLiving">Daily Living Assistance</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="householdMgmt" name="basicSkills" value="Household Management">
+									<label for="householdMgmt">Household Management</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="companionship" name="basicSkills" value="Companionship">
+									<label for="companionship">Companionship</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="timeMgmt" name="basicSkills" value="Time Management">
+									<label for="timeMgmt">Time Management</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="checkbox-item">
+									<input type="checkbox" id="communication" name="basicSkills" value="Communication Skills">
+									<label for="communication">Communication Skills</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="empathy" name="basicSkills" value="Empathy and Patience">
+									<label for="empathy">Empathy and Patience</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="firstAid" name="basicSkills" value="Basic First Aid">
+									<label for="firstAid">Basic First Aid</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="checkbox-group">
+						<h3>Advanced/Specialized Skills <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Select any specialized skills you possess</span></span></h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox-item">
+									<input type="checkbox" id="medicalCare" name="advancedSkills" value="Specialized Medical Care">
+									<label for="medicalCare">Specialized Medical Care</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="dementiaCare" name="advancedSkills" value="Dementia and Alzheimer's Care">
+									<label for="dementiaCare">Dementia and Alzheimer's Care</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="palliativeCare" name="advancedSkills" value="Palliative and End-of-Life Care">
+									<label for="palliativeCare">Palliative and End-of-Life Care</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="disabilitySupport" name="advancedSkills" value="Disability Support">
+									<label for="disabilitySupport">Disability Support</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="behavioralSupport" name="advancedSkills" value="Behavioral and Emotional Support">
+									<label for="behavioralSupport">Behavioral and Emotional Support</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								
+								<div class="checkbox-item">
+									<input type="checkbox" id="culturalSensitivity" name="advancedSkills" value="Cultural Sensitivity">
+									<label for="culturalSensitivity">Cultural Sensitivity</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="advancedFirstAid" name="advancedSkills" value="Advanced First Aid and Emergency Response">
+									<label for="advancedFirstAid">Advanced First Aid and Emergency Response</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="childcare" name="advancedSkills" value="Childcare Expertise">
+									<label for="childcare">Childcare Expertise</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="transportation" name="advancedSkills" value="Transportation and Errands">
+									<label for="transportation">Transportation and Errands</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="specializedTraining" name="advancedSkills" value="Specialized Training">
+									<label for="specializedTraining">Specialized Training</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(3)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="button" class="btn-next" onclick="nextSection(3)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Experience Section -->
+				<div class="form-section" id="section4">
+					<div class="section-indicator">Professional Experience</div>
+					
+					<div class="checkbox-group">
+						<h3>Areas of Experience <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Select all areas where you have professional experience</span></span></h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox-item">
+									<input type="checkbox" id="expDailyLiving" name="experience" value="Daily Living Assistance">
+									<label for="expDailyLiving">Daily Living Assistance</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="expHousehold" name="experience" value="Household Management">
+									<label for="expHousehold">Household Management</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="expCompanionship" name="experience" value="Companionship and Emotional Support">
+									<label for="expCompanionship">Companionship and Emotional Support</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="expSpecialized" name="experience" value="Specialized Care">
+									<label for="expSpecialized">Specialized Care</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="checkbox-item">
+									<input type="checkbox" id="expHealth" name="experience" value="Health Monitoring">
+									<label for="expHealth">Health Monitoring</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="expChildcare" name="experience" value="Childcare">
+									<label for="expChildcare">Childcare</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="expDisability" name="experience" value="Disability Support">
+									<label for="expDisability">Disability Support</label>
+								</div>
+								<div class="checkbox-item">
+									<input type="checkbox" id="expEmergency" name="experience" value="Emergency Response">
+									<label for="expEmergency">Emergency Response</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<label for="experienceDetails">Additional Experience Details <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Describe your experience, years of service, notable cases, etc.</span></span></label>
+					<textarea id="experienceDetails" name="experienceDetails" placeholder="Please provide details about your professional experience, including years of service, notable cases, or any other relevant information"></textarea>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(4)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="button" class="btn-next" onclick="nextSection(4)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Availability Section -->
+				<div class="form-section" id="section5">
+					<div class="section-indicator">Availability</div>
+					
+					<label for="availability" class="required">Days and Hours Available <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Please be as specific as possible about your availability</span></span></label>
+					<textarea id="availability" name="availability" required placeholder="Example: Monday-Friday 8am-6pm, Weekends 10am-4pm"></textarea>
+					
+					<div class="radio-group">
+						<label>Immediate Start Availability:</label>
+						<div class="radio-item">
+							<input type="radio" id="immediateYes" name="immediateStart" value="Yes" required>
+							<label for="immediateYes">Yes, I can start immediately</label>
+						</div>
+						<div class="radio-item">
+							<input type="radio" id="immediateNo" name="immediateStart" value="No">
+							<label for="immediateNo">No, I need to give notice</label>
+						</div>
+					</div>
+					
+					<label for="noticePeriod">If not immediately available, when can you start? <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Please specify your notice period if applicable</span></span></label>
+					<input type="text" id="noticePeriod" name="noticePeriod" placeholder="e.g. 2 weeks notice">
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(5)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="button" class="btn-next" onclick="nextSection(5)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Additional Information Section -->
+				<div class="form-section" id="section6">
+					<div class="section-indicator">Additional Information</div>
+					
+					<label for="personalStatement" class="required">Personal Statement or Bio (200 words max) <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Tell us about yourself and why you want to be a carer</span></span></label>
+					<textarea id="personalStatement" name="personalStatement" required placeholder="Tell us about yourself, your passion for caregiving, and why you'd be a great fit for Excelsia Health"></textarea>
+					
+					<label for="hobbies">Hobbies or Interests (optional)</label>
+					<textarea id="hobbies" name="hobbies" placeholder="What do you enjoy doing in your free time?"></textarea>
+					
+					<div class="checkbox-item" style="margin-top: 20px;">
+						<input type="checkbox" id="backgroundCheck" name="backgroundCheck" required>
+						<label for="backgroundCheck" class="required">I confirm I have a clean criminal record and consent to background checks</label>
+					</div>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(6)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="button" class="btn-next" onclick="nextSection(6)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Document Uploads Section -->
+				<div class="form-section" id="section7">
+					<div class="section-indicator">Document Uploads</div>
+					<p style="margin-bottom: 20px; color: var(--light-text);">Please upload the required documents to complete your application. All documents will be kept confidential.</p>
+					
+					<div class="upload-section">
+						<h3>Personal Identification (upload any 2)</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="nin">National Identification Number (NIN) Slip or Card</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload NIN Document
+										</label>
+										<input type="file" id="nin" name="nin" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="passport">International Passport</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Passport
+										</label>
+										<input type="file" id="passport" name="passport" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="driversLicense">Driver's License</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Driver's License
+										</label>
+										<input type="file" id="driversLicense" name="driversLicense" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="votersCard">Voter's Card</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Voter's Card
+										</label>
+										<input type="file" id="votersCard" name="votersCard" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="upload-section">
+						<h3>Proof of Address (upload one)</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="utilityBill">Utility Bill (not older than 3 months)</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Utility Bill
+										</label>
+										<input type="file" id="utilityBill" name="utilityBill" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="bankStatement">Bank Statement with address</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Bank Statement
+										</label>
+										<input type="file" id="bankStatement" name="bankStatement" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="upload-item">
+							<label for="tenancyAgreement">Tenancy Agreement or Landlord's Letter</label>
+							<div class="file-upload">
+								<label class="file-upload-label">
+									<i class="fas fa-cloud-upload-alt"></i> Upload Agreement
+								</label>
+								<input type="file" id="tenancyAgreement" name="tenancyAgreement" class="file-upload-input">
+							</div>
+						</div>
+					</div>
+					
+					<div class="upload-section">
+						<h3>Professional Documents</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="cv">Updated CV/Resume (pdf/docx)</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload CV/Resume
+										</label>
+										<input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="certificates">Relevant Certificates</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Certificates
+										</label>
+										<input type="file" id="certificates" name="certificates" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="upload-item">
+							<label for="licenses">Professional Licenses (if applicable)</label>
+							<div class="file-upload">
+								<label class="file-upload-label">
+									<i class="fas fa-cloud-upload-alt"></i> Upload Licenses
+								</label>
+								<input type="file" id="licenses" name="licenses" class="file-upload-input">
+							</div>
+						</div>
+					</div>
+					
+					<div class="upload-section">
+						<h3>Background Verification (mandatory)</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="policeClearance" class="required">Police Clearance Certificate</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Police Clearance
+										</label>
+										<input type="file" id="policeClearance" name="policeClearance" required class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="references">Reference Letters</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload References
+										</label>
+										<input type="file" id="references" name="references" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="upload-section">
+						<h3>Health Records</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="medicalCertificate">Medical Fitness Certificate</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Medical Certificate
+										</label>
+										<input type="file" id="medicalCertificate" name="medicalCertificate" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="vaccinationRecords">Vaccination Records</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Vaccination Records
+										</label>
+										<input type="file" id="vaccinationRecords" name="vaccinationRecords" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="upload-section">
+						<h3>Additional Documents</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="photo">Passport-Sized Photograph</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Photograph
+										</label>
+										<input type="file" id="photo" name="photo" accept="image/*" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="upload-item">
+									<label for="bankDetails">Bank Account Details</label>
+									<div class="file-upload">
+										<label class="file-upload-label">
+											<i class="fas fa-cloud-upload-alt"></i> Upload Bank Details
+										</label>
+										<input type="file" id="bankDetails" name="bankDetails" class="file-upload-input">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(7)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="button" class="btn-next" onclick="nextSection(7)">Next <i class="fas fa-arrow-right"></i></button>
+					</div>
+				</div>
+				
+				<!-- Other Information Section -->
+				<div class="form-section" id="section8">
+					<div class="section-indicator">Final Steps</div>
+					
+					<label for="emergencyContact" class="required">Emergency Contact Information <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Provide at least one emergency contact with phone number</span></span></label>
+					<textarea id="emergencyContact" name="emergencyContact" required placeholder="Name, Relationship, Phone Number (e.g. John Doe, Brother, +234 800 000 0000)"></textarea>
+					
+					<div class="radio-group">
+						<label>Willingness to Travel with Clients:</label>
+						<div class="radio-item">
+							<input type="radio" id="travelYes" name="willingnessToTravel" value="Yes">
+							<label for="travelYes">Yes, I'm willing to travel with clients if needed</label>
+						</div>
+						<div class="radio-item">
+							<input type="radio" id="travelNo" name="willingnessToTravel" value="No">
+							<label for="travelNo">No, I prefer not to travel with clients</label>
+						</div>
+					</div>
+					
+					<label for="vaccinationStatus">Vaccination Status (if relevant) <span class="info-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">List any vaccinations you've received (e.g. COVID-19, Hepatitis B)</span></span></label>
+					<input type="text" id="vaccinationStatus" name="vaccinationStatus" placeholder="List your vaccination status if relevant">
+					
+					<div class="checkbox-item" style="margin-top: 30px;">
+						<input type="checkbox" id="consent" name="consent" required>
+						<label for="consent" class="required">I confirm that all information provided is accurate and complete to the best of my knowledge. I understand that providing false information may result in termination of any employment agreement.</label>
+					</div>
+					
+					<div class="form-navigation">
+						<button type="button" class="btn-prev" onclick="prevSection(8)"><i class="fas fa-arrow-left"></i> Previous</button>
+						<button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Application</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<footer class="main-footer normal-padding">
+            <div class="auto-container">
+                <!--Widgets Section-->
+                <div class="widgets-section">
+                    <div class="row clearfix">
+
+                        <!--Column-->
+                        <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                            <div class="footer-widget logo-widget">
+                                <div class="widget-content">
+                                    <div class="logo">
+                                        <a href="index.html"><img id="fLogo" src="images/nav-logo.png" alt="" /></a>
+                                    </div>
+                                    <div class="text">Your Trusted Partner in Health and Well-being. We provide exceptional home care, social care, medical and birth tourism services tailored to your needs. Incorporated in Nigeria with RC:1421192</div>
+                                    <ul class="social-links clearfix">
+                                        <li><a href="https://www.facebook.com/excelsiahealth/"><span class="fab fa-facebook-square"></span></a></li>
+                                        <li><a href="https://x.com/ExcelsiaHealth"><span class="fab fa-twitter"></span></a></li>
+                                        <li><a href="https://www.instagram.com/ExcelsiaHealth/"><span class="fab fa-instagram"></span></a></li>
+                                        <li><a href="https://ng.linkedin.com/company/excelsiahealth"><span class="fab fa-linkedin"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Column-->
+                        <div class="column col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="footer-widget links-widget">
+                                <div class="widget-content">
+                                    <h6>Explore</h6>
+                                    <div class="row clearfix">
+                                        <div class="col-md-4 col-sm-12">
+                                            <ul>
+                                                <li><a href="about-2.html">About</a></li>
+                                                <li><a href="homecareService.html">HomeCare Nigeria</a></li>
+                                                <li><a href="domiciliary.html">Domiciliary Care</a></li>
+                                                <li><a href="specialist.html">Specialist Care</a></li>
+                                                <li><a href="independent.html">Independent Care</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <ul>
+                                                <li><a href="#">Find Carers</a></li>
+                                                <li><a href="about.html">Excelsia Health Travels</a></li>
+                                                <li><a href="procedure.html">Procedures</a></li>
+                                                <li><a href="destination.html">Destinations</a></li>
+                                                <li><a href="how-it-works.html">How It Works</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <ul>
+                                                <li><a href="contact-2.html">Contact Us</a></li>
+                                                <li><a href="blog-grid.html">Blog</a></li>
+                                                <li><a href="calculator.html">Calculator</a></li>
+                                                <li><a href="partnerwithus.html">Partner With Us</a></li>
+                                                <li><a href="contact.html">Work With Us</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Column-->
+                        <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                            <div class="footer-widget info-widget">
+                                <div class="widget-content">
+                                    <h6>Contact</h6>
+                                    <ul class="contact-info">
+                                        <li class="address"><span class="icon flaticon-pin-1"></span> Nigeria</li>
+                                        <li><span class="icon flaticon-call"></span><a href="tel:+234(0)9059735426">+234(0)9059735426 </a></li>
+                                        <li><span class="icon flaticon-email-2"></span><a
+                                                href="mailto:info@excelsiahealth.net">info@excelsiahealth.net</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="auto-container">
+                    <div class="inner clearfix">
+                        <div class="copyright">&copy; Copyright 2025 by ExcelsiaHealth.net</div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+
+	</div>
+	<!--End pagewrapper-->
+
+	<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/TweenMax.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery.fancybox.js"></script>
+	<script src="js/owl.js"></script>
+	<script src="js/mixitup.js"></script>
+	<script src="js/knob.js"></script>
+	<script src="js/validate.js"></script>
+	<script src="js/appear.js"></script>
+	<script src="js/wow.js"></script>
+	<script src="js/jQuery.style.switcher.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js">
+	</script>
+	<script src="js/jquery.easing.min.js"></script>
+	<script src="js/custom-script.js"></script>
+
+
+	<script src="js/lang.js"></script>
+	<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script src="js/color-switcher.js"></script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// Track current section
+			let currentSection = 1;
+			const totalSections = 8;
+			
+			// Initialize the form
+			initializeForm();
+			
+			// Form navigation functions
+			function nextSection(current) {
+				if (validateSection(current)) {
+					hideSection(current);
+					currentSection = current + 1;
+					showSection(currentSection);
+					updateProgressBar();
+					updateStepIndicator();
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				}
+			}
+			
+			function prevSection(current) {
+				hideSection(current);
+				currentSection = current - 1;
+				showSection(currentSection);
+				updateProgressBar();
+				updateStepIndicator();
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+			
+			function hideSection(sectionNumber) {
+				const section = document.getElementById(`section${sectionNumber}`);
+				section.classList.remove('active');
+				section.style.opacity = '0';
+				section.style.transform = 'translateY(20px)';
+			}
+			
+			function showSection(sectionNumber) {
+				const section = document.getElementById(`section${sectionNumber}`);
+				section.classList.add('active');
+				setTimeout(() => {
+					section.style.opacity = '1';
+					section.style.transform = 'translateY(0)';
+				}, 10);
+			}
+			
+			function updateProgressBar() {
+				const progressPercentage = (currentSection / totalSections) * 100;
+				document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+			}
+			
+			function updateStepIndicator() {
+				const steps = document.querySelectorAll('.step');
+				steps.forEach(step => {
+					const stepNumber = parseInt(step.dataset.step);
+					step.classList.remove('active', 'completed');
+					
+					if (stepNumber < currentSection) {
+						step.classList.add('completed');
+					} else if (stepNumber === currentSection) {
+						step.classList.add('active');
+					}
+				});
+			}
+			
+			function validateSection(sectionNumber) {
+				let isValid = true;
+				const section = document.getElementById(`section${sectionNumber}`);
+				const requiredFields = section.querySelectorAll('[required]');
+				
+				requiredFields.forEach(field => {
+					if (!field.value.trim()) {
+						isValid = false;
+						field.style.borderColor = '#e74c3c';
+						setTimeout(() => {
+							field.style.borderColor = '#ddd';
+						}, 2000);
+					}
+				});
+				
+				// Special validation for checkbox/radio groups
+				if (sectionNumber === 6) {
+					const backgroundCheck = document.getElementById('backgroundCheck');
+					if (!backgroundCheck.checked) {
+						isValid = false;
+						backgroundCheck.parentElement.style.color = '#e74c3c';
+						setTimeout(() => {
+							backgroundCheck.parentElement.style.color = '';
+						}, 2000);
+					}
+				}
+				
+				if (sectionNumber === 8) {
+					const consentCheck = document.getElementById('consent');
+					if (!consentCheck.checked) {
+						isValid = false;
+						consentCheck.parentElement.style.color = '#e74c3c';
+						setTimeout(() => {
+							consentCheck.parentElement.style.color = '';
+						}, 2000);
+					}
+				}
+				
+				if (!isValid) {
+					// Scroll to the first error
+					const firstError = section.querySelector('[required]:invalid') || 
+									 section.querySelector('[required]');
+					if (firstError) {
+						firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						firstError.focus();
+					}
+					
+					// Show error message
+					const errorMessage = document.createElement('div');
+					errorMessage.textContent = 'Please fill in all required fields';
+					errorMessage.style.color = '#e74c3c';
+					errorMessage.style.margin = '15px 0';
+					errorMessage.style.textAlign = 'center';
+					errorMessage.style.fontWeight = 'bold';
+					
+					const existingError = section.querySelector('.error-message');
+					if (existingError) {
+						existingError.remove();
+					}
+					
+					section.insertBefore(errorMessage, section.firstChild);
+					setTimeout(() => {
+						errorMessage.remove();
+					}, 3000);
+				}
+				
+				return isValid;
+			}
+			
+			function initializeForm() {
+				// Set up event listeners for navigation buttons
+				for (let i = 1; i <= totalSections; i++) {
+					const nextBtn = document.querySelector(`#section${i} .btn-next`);
+					const prevBtn = document.querySelector(`#section${i} .btn-prev`);
+					
+					if (nextBtn) {
+						nextBtn.addEventListener('click', function() {
+							nextSection(i);
+						});
+					}
+					
+					if (prevBtn) {
+						prevBtn.addEventListener('click', function() {
+							prevSection(i);
+						});
+					}
+				}
+				
+				// Form submission handler
+				const form = document.getElementById('carerProfileForm');
+				form.addEventListener('submit', function(e) {
+					e.preventDefault();
+					
+					if (validateSection(currentSection)) {
+						// Here you would normally submit the form to your server
+						alert('Form submitted successfully!');
+						// form.submit(); // Uncomment to actually submit the form
+					}
+				});
+				
+				// Initialize the first section
+				showSection(1);
+				updateStepIndicator();
+				
+				// Add animation to form sections when they become active
+				const formSections = document.querySelectorAll('.form-section');
+				formSections.forEach(section => {
+					section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+					section.style.opacity = '0';
+					section.style.transform = 'translateY(20px)';
+				});
+			}
+		});
+	</script>
+
+</body>
+
+</html>
